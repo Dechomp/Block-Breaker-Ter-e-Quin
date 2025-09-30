@@ -35,6 +35,7 @@
   },
   "name":"Quebra Blocos",
   "resources":[
+    {"id":{"name":"objBola","path":"objects/objBola/objBola.yy",},},
     {"id":{"name":"objPlayer","path":"objects/objPlayer/objPlayer.yy",},},
     {"id":{"name":"Room1","path":"rooms/Room1/Room1.yy",},},
     {"id":{"name":"sprBlocos","path":"sprites/sprBlocos/sprBlocos.yy",},},
