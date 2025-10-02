@@ -71,14 +71,14 @@ else{
 	Y A posição do y para checar
 	obj A instancia("ser") ou objeto("tipo") que queira checar
 	
-	Ou seja, com esta função podemos verificar se havera uma colsião em um lugar especifico
+	Ou seja, com esta função podemos verificar se havera uma colisão em um lugar especifico
 	No nosso caso, usaremos para determinar para qual direção o objeto deve ir
 	*/
 	
 	//Primeiro, vamos confirgurar as leterais
 	//Ou seja, a esquerda e a direita
 	//Colisão na esquerda
-	//**Usaremos o objeto colisão para testar as colisões nais facilmente
+	//**Usaremos o objeto colisão para testar as colisões mais facilmente
 	if place_meeting(x - velocidade, y, objColisao){
 		direcaoHorizontal = 1
 	}	
@@ -93,9 +93,58 @@ else{
 		direcaoVertical = 1
 	}
 	
-	//Agora iremos fazer a insteração com o player
+	//Agora iremos fazer a interação com o player
 	if place_meeting(x, y + velocidade, objPlayer){
 		direcaoVertical = -1
+	}
+	
+	//Agora vamos começar as colisões com os blocos
+	//Primeiro vamos checar as direção de onde ocorrerá a colisão
+	//Para isto usaremos qual função? Muito bem, place_meeting()
+	//Caso ocorra na esquerda
+	if place_meeting(x - velocidade, y, objBlocos){
+		/*
+		Mas eu não destruir o bloco que a bola colidiu apenas usando o instance_destroy(objBlocos)
+		Por que não podemos usar? É só olharmos a descrição da função
+		Descrição:
+		function instance_destroy([id: Asset.GMObject OR Id. Instance OR Constant.All], -
+		- [execute_event_flag: Bool]) -> Undefined
+		You call this function whenever you wish to destroy an instance, normally triggering -
+		- a Destroy Event and also a Clean Up Event.
+		id The instance ID or object_index to destroy (optional, default is the calling instance) -
+		execute_event_flag Set to true or false to perform the destroy event or not-
+		- (optional, default is true)
+		
+		Tradução
+		Função instance_destroy([id: Asset Objeto ou Id. da instancia ou Constant. Todas as instancias], -
+		- [execute_event_flag: valor booleano]) retorno indefinido ou vazio
+		Você chama esta função quando você deseja destruir uma instancia, normalmente ocasiona no evento -
+		- de destruição e também no evento de limpeza
+		id A identificação da instancia ou o index do objeto (opcional, porque o padrão é deletar a instancia-
+		- que chamou a função) 
+		execute_event_flag Verdadeiro ou falso para permitir o evento de destruição ou não(opcional pois o
+		- padrão é true)
+		
+		Então, caso coloquemos para destuir o objBlocos, ele destruirá todas as instancia daquele blocos
+		Para resolver isto, podemos fazer de 2 jeitos
+		O primeiro, é adicionar ao objBlocos, o evento de colsião com o objBola, e destruir o bloco lá
+		A segunda e destuir a instancia recebendo o id dela quando colidirmos com uma
+		Qual método, querem usar? Eu particulamente, prefiro pela segunda opção.
+		Segundo Ganhou
+		Ok, com sgundo método, usaremos a função place_instance()
+		Descrição da função:
+		function instance_place(x: Real, y: Real, obj: Id. TileMapElement OR Asset.GMObject -
+		- OR Constant.All OR Array) -> Id. Instance
+		With this function you can check a position for a collision with another instance or -
+		- all instances of an object
+		using the collision mask of the instance that runs the code for the check.
+		X The x position to check for instances.
+		y The y position to check for instances.
+		obj The object to check for instances of.
+		
+		*/
+		
+		
 	}
 }
 
