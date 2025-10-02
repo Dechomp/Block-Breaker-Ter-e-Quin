@@ -102,8 +102,7 @@ else{
 	//Primeiro vamos checar as direção de onde ocorrerá a colisão
 	//Para isto usaremos qual função? Muito bem, place_meeting()
 	//Caso ocorra na esquerda
-	if place_meeting(x - velocidade, y, objBlocos){
-		/*
+	/*
 		Mas eu não destruir o bloco que a bola colidiu apenas usando o instance_destroy(objBlocos)
 		Por que não podemos usar? É só olharmos a descrição da função
 		Descrição:
@@ -142,10 +141,58 @@ else{
 		y The y position to check for instances.
 		obj The object to check for instances of.
 		
+		Tradução:
+		Função instance_place(x: valor Real, y: valor Real, obj? Id do tilemap, ou Asset. Objeto, ou Constante. -
+		-todos os objetos ou um vetor de objetos) retorno id da instancia
+		Com esta função, você consegue checar uma posição aonde ocerrerá uma colisão com outra instancia ou-
+		- todas as instancia de um objeto
+		Usa a mascara de colsião de uma instancia desta compilaçaodo código para checar
+		X A posição do x para checar as instancias
+		Y A posição do y para checar as instancias
+		obj O objeto para checar a instancia
+		
+		Ou seja, iremos primeiro checar se ouve uma colisão, se houver, iremos receber o id da instancia
+		e depois destuilá
 		*/
+		//Colisão na esquerda
+		if place_meeting(x - velocidade, y, objBloco){
+				//Agora criamos uma variável do bloco que a bolinha acertou e destroi ele
+				blocoAcertado = instance_place(x - velocidade, y, objBloco)
+				//Agora destroimos
+				instance_destroy(blocoAcertado)
+				//Como acertamos na esquerda, agora iremos para direita
+				direcaoHorizontal = 1
+		}
 		
+		//Colisão na direita
+		if place_meeting(x + velocidade, y, objBloco){
+				//Agora criamos uma variável do bloco que a bolinha acertou e destroi ele
+				blocoAcertado = instance_place(x + velocidade, y, objBloco)
+				//Agora destroimos
+				instance_destroy(blocoAcertado)
+				//Como acertamos na direita, agora iremos para esquerda
+				direcaoHorizontal = - 1
+		}
 		
-	}
+		//Colisão em cima
+		if place_meeting(x, y - velocidade, objBloco){
+				//Agora criamos uma variável do bloco que a bolinha acertou e destroi ele
+				blocoAcertado = instance_place(x, y - velocidade , objBloco)
+				//Agora destroimos
+				instance_destroy(blocoAcertado)
+				//Como acertamos em cima, agora iremos para baixo
+				direcaoVertical = 1
+		}
+		
+		//Colisão em baixo
+		if place_meeting(x, y + velocidade, objBloco){
+				//Agora criamos uma variável do bloco que a bolinha acertou e destroi ele
+				blocoAcertado = instance_place(x, y + velocidade , objBloco)
+				//Agora destroimos
+				instance_destroy(blocoAcertado)
+				//Como acertamos em baixo, agora iremos para cima 
+				direcaoVertical = - 1
+		}
 }
 
 //No final, some as direções com as suas respectivas variáveis vezes a velocidade

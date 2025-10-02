@@ -1,9 +1,9 @@
 {
   "$GMObject":"",
-  "%Name":"objBlocos",
+  "%Name":"objBloco",
   "eventList":[],
   "managed":true,
-  "name":"objBlocos",
+  "name":"objBloco",
   "overriddenProperties":[],
   "parent":{
     "name":"Objects",

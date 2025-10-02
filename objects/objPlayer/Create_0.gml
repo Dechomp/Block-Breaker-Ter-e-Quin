@@ -1,5 +1,5 @@
 //Criar a varivel de velocidade
-velocidade = 3		
+velocidade = 5		
 
 /*Agora queremos criar as vidas
 Para criar uma variavel global, usamos global.(Nome da variavel)

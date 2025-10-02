@@ -35,7 +35,7 @@
   },
   "name":"Quebra Blocos",
   "resources":[
-    {"id":{"name":"objBlocos","path":"objects/objBlocos/objBlocos.yy",},},
+    {"id":{"name":"objBloco","path":"objects/objBloco/objBloco.yy",},},
     {"id":{"name":"objBola","path":"objects/objBola/objBola.yy",},},
     {"id":{"name":"objColisao","path":"objects/objColisao/objColisao.yy",},},
     {"id":{"name":"objPlayer","path":"objects/objPlayer/objPlayer.yy",},},
