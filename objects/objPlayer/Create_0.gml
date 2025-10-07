@@ -31,3 +31,5 @@ if ! variable_global_exists("vidas"){
 if ! variable_global_exists("pontos"){
 	global.pontos = 0
 }
+//Agora que já criamos os blocos, vamos mostra-los na tela, mas antes, vamos adicionar
+//pontos ao quebrar blocos
