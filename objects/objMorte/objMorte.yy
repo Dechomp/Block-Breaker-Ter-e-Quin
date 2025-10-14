@@ -1,13 +1,9 @@
 {
   "$GMObject":"",
-  "%Name":"objBola",
-  "eventList":[
-    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
-    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":3,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
-    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":7,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
-  ],
+  "%Name":"objMorte",
+  "eventList":[],
   "managed":true,
-  "name":"objBola",
+  "name":"objMorte",
   "overriddenProperties":[],
   "parent":{
     "name":"Objects",
@@ -32,8 +28,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"sprBola",
-    "path":"sprites/sprBola/sprBola.yy",
+    "name":"sprMorte",
+    "path":"sprites/sprMorte/sprMorte.yy",
   },
   "spriteMaskId":null,
   "visible":true,

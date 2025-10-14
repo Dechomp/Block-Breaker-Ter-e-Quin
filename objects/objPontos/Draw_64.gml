@@ -104,7 +104,8 @@ draw_set_font(fntPontos)
 
 /*
 E agora desenhamos na tela, também colocamos para ela ir para o meio da tela
-Mas, vamos perceber que o texto não está no meio, pois a horientação normal é na esquerda
+Mas, vamos perceber que o texto não está no meio, pois a horientação normal 
+é na esquerda
 Para trocarmos a direção usaremos a função draw_set_halign():
 
 Para definir a centralização, usaremos as funções:
@@ -152,4 +153,7 @@ fa_bottom: Para baixo
 No caso iremos usar a fa_top, então não necessáriamente teremos que 
 - utilizar esta função, mas já fica de ensinamento
 */
+
+draw_set_halign(fa_center)
+draw_set_valign(fa_top)
 draw_text(room_width / 2,y,mensagem)
