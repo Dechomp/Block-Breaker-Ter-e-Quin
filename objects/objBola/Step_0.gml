@@ -20,9 +20,10 @@ Vocês sabem dizer qual é? A "!" (em outras linguagens, podemos usar como not)
 Então se o jogo não começou, seguimos o player
 */
 //Jeito "certo"
-if ! isStart{
+if ! global.isStart{
 	//Seguindo o player
 	x = objPlayer.x
+	y = objPlayer. y - 10
 	//E agora, caso apertemos para cima, a bola deve se mover e alterar o isStart para true
 	if keyboard_check(vk_up) or keyboard_check(ord("W")) or keyboard_check(vk_space){
 		//Vai para cima
@@ -43,7 +44,7 @@ if ! isStart{
 			direcaoHorizontal = -1
 		}
 		//Indique que o jogo foi iniciado com isStart recebendo true
-		isStart = true
+		global.isStart = true
 	}
 }
 //Se o jogo já começou

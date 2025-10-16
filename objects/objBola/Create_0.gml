@@ -18,8 +18,16 @@ Lembrando que ao usar "." você está se refirindo a uma propriedade/função -
 - da variavel/objeto, no nosso caso, usaremos as propriedades do objPlayer
 E o y da bola dever ser apenas alguns pixels acima do y do player
 */
-x = objPlayer.x
-y = objPlayer.y - 10
+
+/*
+Aqui esta o motivo da bola iniciar lá embaixo com o player, ou seja, ou
+Começamos um novo objeto para identificar que é uma bola criada pelo bloco
+Ou adaptamos o objeto para funcionar tanto no incio do jogo, quanto
+quando for criado
+*/
+//Certo escolhemos a adaptação, então iniciamos tirando este jeito
+/*x = objPlayer.x
+y = objPlayer.y - 10*/
 /*
 Só que tem um problema, sabem qual? Toda vez que a bolinha for criada -
 - ela vai aparecer no meio do player, só que, nem toda bola é criada -
@@ -35,4 +43,45 @@ Podemos usar este método (Existem outras maneiras, mas vamos usar esta)
 Apesar da bola iniciar no lugar certo, ela não segue o player, para seguir
 Teremos que usar uma outra função no step
 */
-isStart = false //Futuramente, esta deve ser uma variável global
+//isStart = false //Futuramente, esta deve ser uma variável global
+
+/*
+Lembra que eu falei que futuramente fariamos a variável sendo global?
+È por isto, nós vamos verificar se o jogo inicou ou não
+E ele vai começar não inciado, e depois ir para cima do player
+E quando não estiver, vai iniciar com um direção aleatória
+
+Não esqueça de verificar se a variável global já existe
+Se ela não existe, cria a variável
+*/
+
+if ! variable_global_exists("isStart"){
+	global.isStart = false
+	x = objPlayer.x
+	y = objPlayer.y - 10
+}
+else{
+	//Caso exista, iremos aleatorizar a direção para aonde a bola vai
+	
+	direcaoHorizontal = irandom_range(0, 1)
+	direcaoVertical = irandom_range(0, 1)
+	
+	//0 representa a chance de ir para esquera ou para cima
+
+	if direcaoHorizontal == 0{
+		direcaoHorizontal  = -1
+	}
+	
+	if direcaoVertical == 0{
+		direcaoVertical = -1
+	}
+}
+
+//Processo de criação da quantidade de bolas
+if ! variable_global_exists("quantBolas"){
+	global.quantBolas = 1
+}
+else{
+	global.quantBolas++
+}
+
