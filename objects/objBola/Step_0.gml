@@ -155,6 +155,16 @@ else{
 		Ou seja, iremos primeiro checar se ouve uma colisão, se houver, iremos receber o id da instancia
 		e depois destuilá
 		*/
+		//Colisão em baixo
+		if place_meeting(x, y + velocidade, objBloco){
+				//Agora criamos uma variável do bloco que a bolinha acertou e destroi ele
+				blocoAcertado = instance_place(x, y + velocidade , objBloco)
+				//Agora destroimos
+				instance_destroy(blocoAcertado)
+				//Como acertamos em baixo, agora iremos para cima 
+				direcaoVertical = - 1
+		}
+		
 		//Colisão na esquerda
 		if place_meeting(x - velocidade, y, objBloco){
 				//Agora criamos uma variável do bloco que a bolinha acertou e destroi ele
@@ -185,15 +195,7 @@ else{
 				direcaoVertical = 1
 		}
 		
-		//Colisão em baixo
-		if place_meeting(x, y + velocidade, objBloco){
-				//Agora criamos uma variável do bloco que a bolinha acertou e destroi ele
-				blocoAcertado = instance_place(x, y + velocidade , objBloco)
-				//Agora destroimos
-				instance_destroy(blocoAcertado)
-				//Como acertamos em baixo, agora iremos para cima 
-				direcaoVertical = - 1
-		}
+		
 }
 
 //No final, some as direções com as suas respectivas variáveis vezes a velocidade
