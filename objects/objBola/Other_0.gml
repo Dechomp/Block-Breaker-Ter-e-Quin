@@ -1,3 +1,8 @@
+if global.isFim{
+	exit
+}
+
+
 /*
 Este evento é gerado toda vez qua a instancia sai da tela
 No nosso, quando uma instancia do objBola sai da tela

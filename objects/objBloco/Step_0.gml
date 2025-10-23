@@ -1,3 +1,8 @@
+if global.isFim{
+	exit
+}
+
+
 if ! global.blocoAlturaCerta{
 	y ++
 	

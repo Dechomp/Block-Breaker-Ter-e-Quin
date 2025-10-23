@@ -1,3 +1,7 @@
+if global.isFim{
+	exit
+}
+
 /*
 Aqui, toda vez que a quantidade de blocos chegar a zero. começaremos a criar os blocos
 Como criaremos mais de 1, teremos que usar um laço de repetição
