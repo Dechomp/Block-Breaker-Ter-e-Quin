@@ -15,7 +15,15 @@ Então, quando for destruido, e o tipo dele for 15, iremos criar uma bola no lug
 
 global.quantBlocos--
 
-
+//Caso o bloco seja de bola
 if tipoBloco == 15{
 	instance_create_layer(x, y, "Instances", objBola)
 }
+
+//Caso o bloco seja de coração
+if tipoBloco == 16 and global.quantVidas < 3{
+	instance_create_layer(x, y, "Instances", objVida)
+}
+
+
+

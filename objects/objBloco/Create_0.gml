@@ -18,11 +18,17 @@ n1 O maior valor possivel do intervalo que será sorteado
 
 E caso o número sorteado seja o 15, ele iniciára com uma bola dentro
 */
-tipoBloco = irandom_range(1, 15)
+tipoBloco = irandom_range(1, 16)
 
 if tipoBloco == 15{
 	//Trocar o sprite para um com a bola dentro
 	sprite_index = sprBlocoBola
+}
+//Caso o tipo do bloco seja 16, ele vai virar um bloco com coração dentro
+//Só que, o bloco com coração dentro, só aparece quando o player não tem 3
+//Vidas, então vamos colocar esta condição também
+if tipoBloco == 16 and global.vidas < 3{
+	sprite_index = sprBlocoCoracao
 }
 
 //Variável global para contar a quantidade de blocos
