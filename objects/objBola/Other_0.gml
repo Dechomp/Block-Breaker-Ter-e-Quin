@@ -1,4 +1,6 @@
-if global.isFim{
+
+
+if global.isFim || place_meeting(x,y, objColisao){
 	exit
 }
 

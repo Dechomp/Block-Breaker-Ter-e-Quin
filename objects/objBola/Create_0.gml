@@ -85,3 +85,7 @@ else{
 	global.quantBolas++
 }
 
+armazenarAnguloVertical = 0
+armazenarAnguloHorizontal = 0
+
+distancia = 0

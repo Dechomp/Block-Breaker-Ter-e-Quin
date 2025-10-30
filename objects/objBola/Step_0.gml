@@ -28,7 +28,7 @@ Então se o jogo não começou, seguimos o player
 if ! global.isStart{
 	//Seguindo o player
 	x = objPlayer.x
-	y = objPlayer. y - 10
+	y = objPlayer.y - 20
 	//E agora, caso apertemos para cima, a bola deve se mover e alterar o isStart para true
 	if keyboard_check(vk_up) or keyboard_check(ord("W")) or keyboard_check(vk_space){
 		//Vai para cima
@@ -50,6 +50,8 @@ if ! global.isStart{
 		}
 		//Indique que o jogo foi iniciado com isStart recebendo true
 		global.isStart = true
+		armazenarAnguloHorizontal = direcaoHorizontal
+		armazenarAnguloVertical = direcaoVertical
 	}
 }
 //Se o jogo já começou
@@ -85,23 +87,69 @@ else{
 	//Ou seja, a esquerda e a direita
 	//Colisão na esquerda
 	//**Usaremos o objeto colisão para testar as colisões mais facilmente
+	
+	//Colisão encima
+	if place_meeting(x, y - velocidade, objColisao){
+		direcaoVertical = -armazenarAnguloVertical
+	}
+	
 	if place_meeting(x - velocidade, y, objColisao){
-		direcaoHorizontal = 1
+		direcaoHorizontal = armazenarAnguloHorizontal
 	}	
 	
 	//Colisão direita
 	if place_meeting(x + velocidade, y, objColisao){
-		direcaoHorizontal = -1
+		direcaoHorizontal = - armazenarAnguloHorizontal
 	}
 	
-	//Colisão encima
-	if place_meeting(x, y - velocidade, objColisao){
-		direcaoVertical = 1
-	}
+	
 	
 	//Agora iremos fazer a interação com o player
 	if place_meeting(x, y + velocidade, objPlayer){
-		direcaoVertical = -1
+		//direcaoVertical = -1
+		
+		
+		//Vamos fazer o calculo da direção de onde a bola deve ir
+		
+		/*
+		Vamos as seguinte condições
+		O x da bola e do player, são originados diretamente no meio, então, para calcularmos
+		as distancias, fazer a subtração do x da bola parao x do player
+		E depois verificar qual foi o valor final
+		*/
+		
+		//Criamos uma variável para armezenar o valor da subtração
+		distancia = x - objPlayer.x
+		
+		if distancia < 20 and distancia > -20{
+			/*
+			Do jeito que fizemos, dependendo de onde bate, a bola fica mis rapida
+			ou divagar
+			Para evitar isto, temos que compensar a velocidade que ele perde na altura 
+			e colocar na lagura
+			*/
+			
+			direcaoHorizontal = 0.2 * sign(distancia)
+			direcaoVertical = -1.8
+			
+			
+		}
+		else if distancia < 40 and distancia > -40{
+			direcaoHorizontal = 0.5 * sign(distancia)
+			direcaoVertical = -1.5 
+		}
+		else if distancia < 60 and distancia > -60{
+			direcaoHorizontal = 1 * sign(distancia)
+			direcaoVertical = - 1
+		}
+		else{
+			direcaoHorizontal = 1.5 * sign(distancia)
+			direcaoVertical = - 0.5
+		}
+		
+		armazenarAnguloHorizontal = direcaoHorizontal
+		armazenarAnguloVertical = direcaoVertical
+		
 	}
 	
 	//Agora vamos começar as colisões com os blocos
@@ -160,6 +208,17 @@ else{
 		Ou seja, iremos primeiro checar se ouve uma colisão, se houver, iremos receber o id da instancia
 		e depois destuilá
 		*/
+		
+		//Colisão em cima
+		if place_meeting(x, y - velocidade, objBloco){
+				//Agora criamos uma variável do bloco que a bolinha acertou e destroi ele
+				blocoAcertado = instance_place(x, y - velocidade , objBloco)
+				//Agora destroimos
+				instance_destroy(blocoAcertado)
+				//Como acertamos em cima, agora iremos para baixo
+				direcaoVertical = -armazenarAnguloVertical
+		}
+		
 		//Colisão em baixo
 		if place_meeting(x, y + velocidade, objBloco){
 				//Agora criamos uma variável do bloco que a bolinha acertou e destroi ele
@@ -167,7 +226,7 @@ else{
 				//Agora destroimos
 				instance_destroy(blocoAcertado)
 				//Como acertamos em baixo, agora iremos para cima 
-				direcaoVertical = - 1
+				direcaoVertical = -armazenarAnguloVertical
 		}
 		
 		//Colisão na esquerda
@@ -177,7 +236,7 @@ else{
 				//Agora destroimos
 				instance_destroy(blocoAcertado)
 				//Como acertamos na esquerda, agora iremos para direita
-				direcaoHorizontal = 1
+				direcaoHorizontal = armazenarAnguloHorizontal
 		}
 		
 		//Colisão na direita
@@ -187,18 +246,9 @@ else{
 				//Agora destroimos
 				instance_destroy(blocoAcertado)
 				//Como acertamos na direita, agora iremos para esquerda
-				direcaoHorizontal = - 1
+				direcaoHorizontal = - armazenarAnguloHorizontal
 		}
 		
-		//Colisão em cima
-		if place_meeting(x, y - velocidade, objBloco){
-				//Agora criamos uma variável do bloco que a bolinha acertou e destroi ele
-				blocoAcertado = instance_place(x, y - velocidade , objBloco)
-				//Agora destroimos
-				instance_destroy(blocoAcertado)
-				//Como acertamos em cima, agora iremos para baixo
-				direcaoVertical = 1
-		}
 		
 		
 }
