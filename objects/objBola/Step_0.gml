@@ -50,8 +50,6 @@ if ! global.isStart{
 		}
 		//Indique que o jogo foi iniciado com isStart recebendo true
 		global.isStart = true
-		armazenarAnguloHorizontal = direcaoHorizontal
-		armazenarAnguloVertical = direcaoVertical
 	}
 }
 //Se o jogo já começou
@@ -90,16 +88,59 @@ else{
 	
 	//Colisão encima
 	if place_meeting(x, y - velocidade, objColisao){
-		direcaoVertical = -armazenarAnguloVertical
+		/*
+		Antes de receber o valor armazenado, precisamos verificar se ele é negativo, 
+		se for,	vamos recebe-lo ao contrário, ou seja, multiplicado por -1, se for positivo, vamos
+		recebe-lo normalmente
+		*/
+		
+		//Se for
+		if sign(armazenarAnguloVertical) == -1{
+			//Recebe ao contrário
+			direcaoVertical = armazenarAnguloVertical * -1
+		}
+		//Se não for
+		else{
+			//Recebe normal
+			direcaoVertical = armazenarAnguloVertical
+		}
+		
+		//Verificamos se é negativo por que o negativo faz subir
 	}
 	
+	//Colisão na esquerda
 	if place_meeting(x - velocidade, y, objColisao){
-		direcaoHorizontal = armazenarAnguloHorizontal
+		/*
+		Na esquerda, verificamos novamente se é negativo, pois na horizontal, o negativo
+		Faz ir para esquerda, se for, recebe ao contrário, se não for, recebe normal
+		*///Se for
+		if sign(armazenarAnguloHorizontal) == -1{
+			//Recebe ao contrário
+			direcaoHorizontal = armazenarAnguloHorizontal * -1
+		}
+		//Se não for
+		else{
+			//Recebe normal
+			direcaoHorizontal = armazenarAnguloHorizontal
+		}
 	}	
 	
 	//Colisão direita
 	if place_meeting(x + velocidade, y, objColisao){
-		direcaoHorizontal = - armazenarAnguloHorizontal
+		/*
+		Na direita, verificamos se é positivo, pois na horizontal, o positivo
+		Faz ir para direita, se for, recebe ao contrário, se não for, recebe normal
+		*/
+		//Se for
+		if sign(armazenarAnguloHorizontal) == 1{
+			//Recebe ao contrário
+			direcaoHorizontal = armazenarAnguloHorizontal * -1
+		}
+		//Se não for
+		else{
+			//Recebe normal
+			direcaoHorizontal = armazenarAnguloHorizontal
+		}
 	}
 	
 	
@@ -147,6 +188,7 @@ else{
 			direcaoVertical = - 0.5
 		}
 		
+		//Recebe o ângulo calculado
 		armazenarAnguloHorizontal = direcaoHorizontal
 		armazenarAnguloVertical = direcaoVertical
 		
@@ -216,7 +258,24 @@ else{
 				//Agora destroimos
 				instance_destroy(blocoAcertado)
 				//Como acertamos em cima, agora iremos para baixo
-				direcaoVertical = -armazenarAnguloVertical
+				/*
+				Antes de receber o valor armazenado, precisamos verificar se ele é negativo, 
+				se for,	vamos recebe-lo ao contrário, ou seja, multiplicado por -1, se for positivo, vamos
+				recebe-lo normalmente
+				*/
+		
+				//Se for
+				if sign(armazenarAnguloVertical) == -1{
+					//Recebe ao contrário
+					direcaoVertical = armazenarAnguloVertical * -1
+				}
+				//Se não for
+				else{
+					//Recebe normal
+					direcaoVertical = armazenarAnguloVertical
+				}
+		
+				//Verificamos se é negativo por que o negativo faz subir
 		}
 		
 		//Colisão em baixo
@@ -226,7 +285,25 @@ else{
 				//Agora destroimos
 				instance_destroy(blocoAcertado)
 				//Como acertamos em baixo, agora iremos para cima 
-				direcaoVertical = -armazenarAnguloVertical
+				/*
+				Antes de receber o valor armazenado, precisamos verificar se ele é positivo, 
+				se for,	vamos recebe-lo ao contrário, ou seja, multiplicado por -1, se for positivo, vamos
+				recebe-lo normalmente
+				*/
+		
+				//Se for
+				if sign(armazenarAnguloVertical) == 1{
+					//Recebe ao contrário
+					direcaoVertical = armazenarAnguloVertical * -1
+				}
+				//Se não for
+				else{
+					//Recebe normal
+					direcaoVertical = armazenarAnguloVertical
+				}
+		
+				//Verificamos se é positivo pois no angulo vertical
+				//o positivo faz descer
 		}
 		
 		//Colisão na esquerda
@@ -236,7 +313,22 @@ else{
 				//Agora destroimos
 				instance_destroy(blocoAcertado)
 				//Como acertamos na esquerda, agora iremos para direita
-				direcaoHorizontal = armazenarAnguloHorizontal
+				/*
+				Aqui devemos verificar se o valor armazenado é negativo, pois na horizontal
+				O negativo faz ir para esquerda, se for, recebemos o valor ao contrário
+				Se não, recebemos o valor normal
+				*/
+				
+				//Se for verdade
+				if sign(armazenarAnguloHorizontal) == -1{
+					//Recebe ao contrário
+					direcaoHorizontal = armazenarAnguloHorizontal * -1
+				}
+				//Se não for
+				else{
+					//Recebe normal
+					direcaoHorizontal = armazenarAnguloHorizontal
+				}
 		}
 		
 		//Colisão na direita
@@ -246,7 +338,22 @@ else{
 				//Agora destroimos
 				instance_destroy(blocoAcertado)
 				//Como acertamos na direita, agora iremos para esquerda
-				direcaoHorizontal = - armazenarAnguloHorizontal
+				/*
+				Aqui devemos verificar se o valor armazenado é positivo, pois na horizontal
+				O positivo faz ir para direita, se for, recebemos o valor ao contrário
+				Se não, recebemos o valor normal
+				*/
+				
+				//Se for verdade
+				if sign(armazenarAnguloHorizontal) == 1{
+					//Recebe ao contrário
+					direcaoHorizontal = armazenarAnguloHorizontal * -1
+				}
+				//Se não for
+				else{
+					//Recebe normal
+					direcaoHorizontal = armazenarAnguloHorizontal
+				}
 		}
 		
 		

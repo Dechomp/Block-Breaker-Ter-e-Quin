@@ -32,7 +32,10 @@ global.quantBolas = 0
 //O "id" do objVida começa zerado
 global.quantVidas = 0
 
-//Começa o joo com 3 vidas
+//Começa o jogo com 3 vidas
 global.vidas = 3
+
+//Salva o jogo
+salvarJogo()
 
 room_restart()

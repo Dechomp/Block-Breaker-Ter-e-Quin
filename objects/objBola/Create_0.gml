@@ -85,7 +85,6 @@ else{
 	global.quantBolas++
 }
 
-armazenarAnguloVertical = 0
-armazenarAnguloHorizontal = 0
-
-distancia = 0
+//Local para armazenar o angulo que a bola vai se mover
+armazenarAnguloVertical = 1
+armazenarAnguloHorizontal = 1
